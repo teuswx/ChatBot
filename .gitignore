@@ -1,0 +1,43 @@
+# Ignorar ambiente virtual do Python (backend)
+backend/venv/
+
+# Ignorar dependências Node.js (frontend)
+frontend/node_modules/
+
+# Ignorar builds do frontend (Vue.js)
+frontend/dist/
+frontend/dist-ssr/
+
+# Ignorar arquivos de configuração local
+frontend/*.local
+
+# Ignorar logs gerais
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Ignorar cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar IDEs e editores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# (opcional) Ignorar outras pastas específicas de build, se forem geradas
+backend/__pycache__/
+backend/*.pyc
