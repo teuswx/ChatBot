@@ -1,13 +1,15 @@
 <template>
   <div class="chat-container">
     <div class="messages">
+      <div class="background"></div> <!-- background separado -->
+      
       <div
         v-for="(msg, index) in mensagens"
         :key="index"
         :class="msg.tipo"
         class="message"
       >
-      <div v-html="formatarMensagem(msg.texto)"></div>
+        <div v-html="formatarMensagem(msg.texto)"></div>
       </div>
     </div>
     <input class="envio"
@@ -50,7 +52,6 @@ const formatarMensagem = (texto) => {
 </script>
 
 <style scoped>
-
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -62,15 +63,21 @@ const formatarMensagem = (texto) => {
   background-color: #eae2e2;
 }
 
-button{
+button {
   margin-top: 10px;
   background-color: #39246d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-button:hover{
+button:hover {
   background-color: #825ce0;
 }
-.envio{
+
+.envio {
   height: 30px;
   border-radius: 8px;
   border: none;
@@ -78,35 +85,55 @@ button:hover{
   padding: 10px;
   color: black;
   outline: none;
-
 }
 
-
 .messages {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 300px;
   overflow-y: auto;
   margin-bottom: 10px;
+
+  border-radius: 5px;
 }
 
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../public/Furia_Esports_logo.png');
+  background-size: 300px 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2; 
+  z-index: 0;
+}
+
+
 .message {
+  position: relative;
+  z-index: 1;
   display: flex;
   margin: 5px 0;
   padding: 5px 10px;
   border-radius: 10px;
   max-width: 80%;
+  word-wrap: break-word;
 }
-
 
 .usuario {
   align-self: flex-end;
   background-color: #39246d;
+  color: white;
 }
-
 
 .bot {
   align-self: flex-start;
   background-color: #5975a7;
+  color: white;
 }
 </style>
