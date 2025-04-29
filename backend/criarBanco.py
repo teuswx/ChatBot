@@ -33,8 +33,8 @@ cursor.execute('''
 
 cursor.execute('''
     INSERT INTO jogos(oponente, data, competicao) VALUES
-        ('Natus Vincere', '2025-05-07 18:00:00', 'IEM Rio 2024'),
-        ('Virtus.pro', '2025-05-10 14:00:00', 'IEM Rio 2024')
+        ('Natus Vincere', '2025-05-07 18:00:00', 'IEM Rio 2025'),
+        ('Virtus.pro', '2025-05-10 14:00:00', 'IEM Rio 2025')
 ''')
 
 cursor.execute('''

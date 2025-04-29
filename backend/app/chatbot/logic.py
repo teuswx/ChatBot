@@ -55,7 +55,7 @@ def processar_mensagem(texto: str) -> str:
         return consultar_escalacao()
     elif ("resultado" in texto and "ultima") or ("última" in texto):
         return consultar_ultimo_resultado()
-    elif "oi" in texto or "ola" in texto:
+    elif " oi " in texto or " ola " in texto:
        return ("Olá! como vai furioso?\n\n"
         "Pergunte algo sobre o time de CS da Fúria!\n"
         "Pode ser sobre os próximos jogos, a escalação principal\n"
@@ -71,7 +71,7 @@ def processar_mensagem(texto: str) -> str:
         "Pode ser sobre os próximos jogos, a escalação principal\n"
         "ou até mesmo o resultado da última partida!")
     elif "boa noite" in texto:
-        return ("Bom dia! como vai furioso?\n\n"
+        return ("Boa noite! como vai furioso?\n\n"
         "Pergunte algo sobre o time de CS da Fúria!\n"
         "Pode ser sobre os próximos jogos, a escalação principal\n"
         "ou até mesmo o resultado da última partida!")
