@@ -105,7 +105,7 @@ button:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../../public/Furia_Esports_logo.png');
+  background-image: url('Furia_Esports_logo.png');
   background-size: 300px 300px;
   background-position: center;
   background-repeat: no-repeat;
