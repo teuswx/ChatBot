@@ -63,7 +63,7 @@ python -m venv venv
 
 # 4. Ative o ambiente virtual:
 # No Windows:
-.env\Scriptsctivate
+./env/Scripts/ctivate
 # No Linux/macOS:
 source venv/bin/activate
 
@@ -77,7 +77,7 @@ python criarBanco.py
 cd app
 
 # 8. Inicie o servidor FastAPI:
-uvicorn main:app --reload
+fastapi dev main.py
 ```
 
 ### Frontend

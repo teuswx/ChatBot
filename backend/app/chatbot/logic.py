@@ -1,5 +1,6 @@
 from datetime import datetime
 from app.database import get_connection
+import unicodedata
 
 def consultar_proximo_jogo():
     conn = get_connection()
@@ -46,38 +47,41 @@ def consultar_ultimo_resultado():
     else:
         return "Não há resultados anteriores."
 
-def processar_mensagem(texto: str) -> str:
-    texto = texto.lower()
+def normalizar_texto(texto: str) -> str:
+    return unicodedata.normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII').lower()
 
-    if ("quando" in texto and "joga" in texto) or ("qual" in texto and "jogo" in texto):
+def processar_mensagem(texto: str) -> str:
+    texto = normalizar_texto(texto)
+
+    if ("quando " in texto and "joga " in texto) or ("qual" in texto and "jogo" in texto):
         return consultar_proximo_jogo()
-    elif ("atual" in texto and "escalação") or ("qual" in texto and "integrantes" in texto):
+    elif ("atual" in texto and "escalacao") or ("qual" in texto and "integrantes" in texto):
         return consultar_escalacao()
-    elif ("resultado" in texto and "ultima") or ("última" in texto):
+    elif ("resultado" in texto and "ultima") or ("ultima" in texto):
         return consultar_ultimo_resultado()
-    elif " oi " in texto or " ola " in texto:
-       return ("Olá! como vai furioso?\n\n"
-        "Pergunte algo sobre o time de CS da Fúria!\n"
-        "Pode ser sobre os próximos jogos, a escalação principal\n"
-        "ou até mesmo o resultado da última partida!")
+    elif "oi" in texto or "ola" in texto:
+        return ("Olá! como vai furioso?\n\n"
+                "Pergunte algo sobre o time de CS da Fúria!\n"
+                "Pode ser sobre os próximos jogos, a escalação principal\n"
+                "ou até mesmo o resultado da última partida!")
     elif "bom dia" in texto:
         return ("Bom dia! como vai furioso?\n\n"
-        "Pergunte algo sobre o time de CS da Fúria!\n"
-        "Pode ser sobre os próximos jogos, a escalação principal\n"
-        "ou até mesmo o resultado da última partida!")
+                "Pergunte algo sobre o time de CS da Fúria!\n"
+                "Pode ser sobre os próximos jogos, a escalação principal\n"
+                "ou até mesmo o resultado da última partida!")
     elif "boa tarde" in texto:
         return ("Boa tarde! como vai furioso?\n\n"
-        "Pergunte algo sobre o time de CS da Fúria!\n"
-        "Pode ser sobre os próximos jogos, a escalação principal\n"
-        "ou até mesmo o resultado da última partida!")
+                "Pergunte algo sobre o time de CS da Fúria!\n"
+                "Pode ser sobre os próximos jogos, a escalação principal\n"
+                "ou até mesmo o resultado da última partida!")
     elif "boa noite" in texto:
         return ("Boa noite! como vai furioso?\n\n"
-        "Pergunte algo sobre o time de CS da Fúria!\n"
-        "Pode ser sobre os próximos jogos, a escalação principal\n"
-        "ou até mesmo o resultado da última partida!")
-    elif ("O que é" in texto and "furia" in texto) or ("quem" in texto and "fundou" in texto and "furia" in texto):
+                "Pergunte algo sobre o time de CS da Fúria!\n"
+                "Pode ser sobre os próximos jogos, a escalação principal\n"
+                "ou até mesmo o resultado da última partida!")
+    elif ("o que e" in texto and "furia" in texto) or ("quem" in texto and "fundou" in texto and "furia" in texto):
         return "A FURIA é uma organização brasileira de e-sports, fundada em 2017 por Jaime Pádua e André Akkari."
-    elif ("onde" in texto and "Posso" in texto and "seguir" in texto) or ("qual" in texto and "instagram" in texto) or ("qual" in texto and "redes" in texto and "sociais" in texto):
+    elif ("onde" in texto and "posso" in texto and "seguir" in texto) or ("qual" in texto and "instagram" in texto) or ("qual" in texto and "redes" in texto and "sociais" in texto):
         return "Você pode seguir a FURIA no Instagram (@furia) e no Twitter (@FURIA)."
     else:
         return "Desculpe furioso! Não compreendi muito bem a pergunta, poderia reformular?"
